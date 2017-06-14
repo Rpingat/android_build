@@ -33,7 +33,6 @@ PRODUCT_PACKAGES += \
     DeskClock \
     DocumentsUI \
     DownloadProviderUi \
-    Email \
     ExactCalculator \
     Exchange2 \
     ExternalStorageProvider \
@@ -44,7 +43,6 @@ PRODUCT_PACKAGES += \
     Launcher2 \
     ManagedProvisioning \
     MtpDocumentsProvider \
-    PicoTts \
     PacProcessor \
     libpac \
     PrintSpooler \
@@ -58,5 +56,6 @@ PRODUCT_PACKAGES += \
     TeleService \
     VpnDialogs \
     MmsService
-
+    #Email
+    #PicoTts 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_base.mk)
