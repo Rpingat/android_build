@@ -179,22 +179,18 @@ include $(BUILD_SYSTEM)/node_fns.mk
 include $(BUILD_SYSTEM)/product.mk
 include $(BUILD_SYSTEM)/device.mk
 
-# A Lineage build needs only the Lineage product makefiles.
-ifneq ($(CUSTOM_BUILD),)
-  all_product_configs := $(shell ls vendor/aosp/products/jdc_$(CUSTOM_BUILD).mk)
-else
   ifneq ($(strip $(TARGET_BUILD_APPS)),)
   # An unbundled app build needs only the core product makefiles.
   all_product_configs := $(call get-product-makefiles,\
       $(SRC_TARGET_DIR)/product/AndroidProducts.mk)
-  else
-  # Read in all of the product definitions specified by the AndroidProducts.mk
-  # files in the tree.
-  all_product_configs := $(get-all-product-makefiles)
-  endif # TARGET_BUILD_APPS
-endif # CUSTOM_BUILD
-
-ifeq ($(CUSTOM_BUILD),)
+else
+ ifneq ($(AIM_BUILD),)
+     all_product_configs := $(shell ls device/*/$(AIM_BUILD)/aim.mk)
+   else
+     # Read in all of the proaimct definitions specified by the AndroidProaimcts.mk
+     # files in the tree.
+     all_proaimct_configs := $(get-all-proaimct-makefiles)
+   endif # AIM_BUILD
 all_named_products :=
 
 # Find the product config makefile for the current product.
