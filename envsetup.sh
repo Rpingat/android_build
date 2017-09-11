@@ -136,12 +136,12 @@ function check_product()
         return
     fi
     if (echo -n $1 | grep -q -e "^aim_") ; then
-        CUSTOM_BUILD=$(echo -n $1 | sed -e 's/^aim_//g')
-        export BUILD_NUMBER=$( (date +%s%N ; echo $CUSTOM_BUILD; hostname) | openssl sha1 | sed -e 's/.*=//g; s/ //g' | cut -c1-10 )
+        AIM_BUILD=$(echo -n $1 | sed -e 's/^aim_//g')
+        export BUILD_NUMBER=$( (date +%s%N ; echo $AIM_BUILD; hostname) | openssl sha1 | sed -e 's/.*=//g; s/ //g' | cut -c1-10 )
     else
-        CUSTOM_BUILD=
+        AIM_BUILD=
     fi
-    export CUSTOM_BUILD
+    export AIM_BUILD
 
         TARGET_PRODUCT=$1 \
         TARGET_BUILD_VARIANT= \

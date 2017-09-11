@@ -1,4 +1,4 @@
-# Put some miscellaneous rules here
+	# Put some miscellaneous rules here
 
 # HACK: clear LOCAL_PATH from including last build target before calling
 # intermedites-dir-for
@@ -2528,7 +2528,7 @@ endif
 ifneq ($(BLOCK_BASED_OTA),false)
     $(INTERNAL_OTA_PACKAGE_TARGET): block_based := --block
 endif
-ifneq ($(CUSTOM_BUILD),)
+ifneq ($(AIM_BUILD),)
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := true
 else
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := false
