@@ -13,6 +13,18 @@ else
   FILE_NAME_TAG := $(BUILD_NUMBER)
 endif
 
+# Build system colors
+
+ ifneq ($(BUILD_WITH_COLORS),0)
+   CL_RED="\033[31m"
+   CL_GRN="\033[32m"
+   CL_YLW="\033[33m"
+   CL_BLU="\033[34m"
+   CL_MAG="\033[35m"
+   CL_CYN="\033[36m"
+   CL_RST="\033[0m"
+ endif
+
 # -----------------------------------------------------------------
 # Define rules to copy PRODUCT_COPY_FILES defined by the product.
 # PRODUCT_COPY_FILES contains words like <source file>:<dest file>[:<owner>].
@@ -2546,15 +2558,20 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) \
 	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-CUSTOM_TARGET_PACKAGE := $(PRODUCT_OUT)/AIMROM-$(AIM_VERSION).zip
+AIM_TARGET_PACKAGE := $(PRODUCT_OUT)/AIMROM-$(AIM_VERSION).zip
 
 .PHONY: otapackage aim bacon
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 aim: bacon
 bacon: otapackage
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CUSTOM_TARGET_PACKAGE)
-	$(hide) $(MD5SUM) $(CUSTOM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CUSTOM_TARGET_PACKAGE).md5sum
-	@echo "Package Complete: $(CUSTOM_TARGET_PACKAGE)" >&2
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(AIM_TARGET_PACKAGE)
+	$(hide) $(MD5SUM) $(AIM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(AIM_TARGET_PACKAGE).md5sum
+	@echo "done"
+ 	@echo -e ${CL_BLU}${CL_CYN}"===============================-Package complete-==============================="${CL_RST}
+ 	@echo -e ${CL_BLU}${CL_YLW}"Zip: "${CL_YLW} $(AIM_TARGET_PACKAGE)${CL_RST}
+ 	@echo -e ${CL_BLU}${CL_YLW}"MD5: "${CL_YLW}" `cat $(AIM_TARGET_PACKAGE).md5sum | awk '{print $$1}' `"${CL_RST}
+ 	@echo -e ${CL_BLU}${CL_YLW}"Size:"${CL_YLW}" `du -sh $(AIM_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
+ 	@echo -e ${CL_BLU}${CL_CYN}"======================================ENJOY======================================"${CL_RST}
 
 endif    # build_ota_package
 
