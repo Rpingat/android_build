@@ -2566,13 +2566,23 @@ aim: bacon
 bacon: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(AIM_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(AIM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(AIM_TARGET_PACKAGE).md5sum
-	@echo "done"
- 	@echo -e ${CL_BLU}${CL_CYN}"===============================-Package complete-==============================="${CL_RST}
+	#@echo "Compilation Successful: $(AIM_TARGET_PACKAGE)"
+	@echo -e ${CL_GRN} "" ${CL_GRN}
+	@echo -e ${CL_GRN} "       d8888 8888888 888b     d888     8888888b.   .d88888b.  888b     d888 "
+	@echo -e ${CL_GRN} "      d88888   888   8888b   d8888     888   Y88b d88P' 'Y88b 8888b   d8888 "
+	@echo -e ${CL_GRN} "     d88P888   888   88888b.d88888     888    888 888     888 88888b.d88888 "
+	@echo -e ${CL_GRN} "    d88P 888   888   888Y88888P888     888   d88P 888     888 888Y88888P888 "
+	@echo -e ${CL_GRN} "   d88P  888   888   888 Y888P 888     8888888P   888     888 888 Y888P 888 "
+	@echo -e ${CL_GRN} "  d88P   888   888   888  Y8P  888     888 T88b   888     888 888  Y8P  888 "
+	@echo -e ${CL_GRN} " d8888888888   888   888   '   888     888  T88b  Y88b. .d88P 888   '   888 "
+	@echo -e ${CL_GRN} "d88P     888 8888888 888       888     888   T88b  'Y88888P'  888       888 "
+	@echo -e ${CL_GRN} "                                                                            "
+	@echo -e ${CL_GRN} "" ${CL_GRN}
+ 	@echo -e ${CL_BLU}${CL_CYN}"=============================== Package complete ==============================="${CL_RST}
  	@echo -e ${CL_BLU}${CL_YLW}"Zip: "${CL_YLW} $(AIM_TARGET_PACKAGE)${CL_RST}
  	@echo -e ${CL_BLU}${CL_YLW}"MD5: "${CL_YLW}" `cat $(AIM_TARGET_PACKAGE).md5sum | awk '{print $$1}' `"${CL_RST}
  	@echo -e ${CL_BLU}${CL_YLW}"Size:"${CL_YLW}" `du -sh $(AIM_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
  	@echo -e ${CL_BLU}${CL_CYN}"======================================ENJOY======================================"${CL_RST}
-
 endif    # build_ota_package
 
 # -----------------------------------------------------------------
