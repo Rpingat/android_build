@@ -17,5 +17,7 @@
 # (like "MAIN") or a branch name and a release candidate
 # (like "CRB01").  It must be a single word, and is
 # capitalized by convention.
+#
 
-export BUILD_ID=OPR5.170623.007
+export BUILD_ID=OPR6.170623.023
+
