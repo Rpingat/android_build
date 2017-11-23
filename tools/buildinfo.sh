@@ -61,6 +61,5 @@ fi
 echo "ro.build.characteristics=$TARGET_AAPT_CHARACTERISTICS"
 
 echo "ro.aim.device=$AIM_DEVICE"
-echo "ro.aim.display.version=$AIM_DISPLAY_VERSION"
 
 echo "# end build properties"
