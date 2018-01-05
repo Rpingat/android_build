@@ -553,9 +553,23 @@ function print_lunch_menu()
 {
     local uname=$(uname)
     echo
-    echo "You're building on" $uname
-    echo
-    echo "Lunch menu... pick a combo:"
+    
+    echo ""
+    tput setaf 1;
+    tput bold;
+    echo "                                    "
+    echo "   \  _ _|  \  |   _ \  _ \   \  |  "
+    echo "  _ \   |  |\/ |     / (   | |\/ |  "
+    echo " _/  _\___|_|  _|  _|_\\___/ _|  _| "
+    echo "                                    "                          
+    tput sgr0;
+    echo ""
+    echo "           Welcome to the device menu           "
+    echo ""
+    tput bold;
+    echo "Below are all the devices currently available to be compiled"
+    tput sgr0;
+    echo ""
 
     local i=1
     local choice
